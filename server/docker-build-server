@@ -3,4 +3,4 @@
 VERSION=$(cat VERSION)
 NAME=simple-server
 
-docker build -f docker/Docker-simple_server -t tuonglan/${NAME}:${VERSION} .
+docker build -f docker/Docker-simple-server -t tuonglan/${NAME}:${VERSION} .
