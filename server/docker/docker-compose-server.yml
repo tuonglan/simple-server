@@ -1,0 +1,11 @@
+version: '2'
+services:
+    sample-server:
+        image: tuonglan/sample-server:1.0.0000
+        ipc: host
+        ports:
+            - 8888:80
+        volumes:
+            - /mnt/log:/var/log
+        command: python server-daemon.py --update_nginx --port_range 8000:8010
+        restart: always

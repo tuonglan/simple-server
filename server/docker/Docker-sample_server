@@ -1,0 +1,22 @@
+FROM python:2.7-slim
+MAINTAINER Lan Do (tuonglan7777777@gmail.com)
+
+# nginx preparation
+RUN apt-get update
+RUN apt-get install -y nginx
+RUN rm -rf /etc/nginx/sites-enabled/default
+ADD docker/nginx_frontend.com /opt/lando/sample-server/nginx_frontend_template.com
+
+# Python preparation
+RUN pip install tornado
+RUN pip install requests
+
+# Simple server
+ADD source/sample-server.py /opt/lando/sample-server/sample-server.py
+ADD docker/server-daemon.py /opt/lando/sample-server/server-daemon.py
+ADD source/handlers.py /opt/lando/sample-server/handlers.py
+ADD data/sample.jpg /opt/lando/data/sample.jpg
+EXPOSE 80
+
+WORKDIR /opt/lando/sample-server
+CMD ["python", "server-daemon.py", "--update_nginx"]

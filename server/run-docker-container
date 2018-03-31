@@ -1,0 +1,2 @@
+#! /bin/sh
+docker run --ipc host -p 8888:80 -v /var/log:/var/log tuonglan/sample-server:1.0.0000 /usr/local/bin/python /opt/lando/sample-server/server-daemon.py --update_nginx --port_range 8000:8010
