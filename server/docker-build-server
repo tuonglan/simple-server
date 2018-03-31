@@ -1,6 +1,6 @@
 #!/bin/sh
 
 VERSION=$(cat VERSION)
-NAME=sample-server
+NAME=simple-server
 
-docker build -f docker/Docker-sample_server -t tuonglan/${NAME}:${VERSION} .
+docker build -f docker/Docker-simple_server -t tuonglan/${NAME}:${VERSION} .

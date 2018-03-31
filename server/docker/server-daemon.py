@@ -30,7 +30,7 @@ if __name__ == '__main__':
     # Update nginx file
     if args.update_nginx:
         update_cluster('nginx_frontend_template.com', 
-                       '/etc/nginx/sites-enabled/sample-server_frontend.com', port_start, port_end)
+                       '/etc/nginx/sites-enabled/simple-server_frontend.com', port_start, port_end)
 
         # Restart nginx
         try:
@@ -45,7 +45,7 @@ if __name__ == '__main__':
             sys.exit(-1)
 
     # Generate subprocesses
-    procs = [subprocess.Popen(['python', 'sample-server.py', '--port', "%s" % i]) 
+    procs = [subprocess.Popen(['python', 'simple-server.py', '--port', "%s" % i]) 
              for i in range(port_start, port_end+1)]
 
     # Periodically check if any process has been killed, restart it
@@ -57,12 +57,12 @@ if __name__ == '__main__':
                 poll = proc.poll()
                 if poll != None:
                     print "Process %s stopped: %s, try to restart it now" % (proc, poll)
-                    print "Restarting: \"python sample-server.py --port %s\"" % (idx+port_start)
+                    print "Restarting: \"python simple-server.py --port %s\"" % (idx+port_start)
                     try:
-                        procs[idx] = subprocess.Popen(['python', 'sample-server.py', '--port', "%s" % (idx+port_start)])
+                        procs[idx] = subprocess.Popen(['python', 'simple-server.py', '--port', "%s" % (idx+port_start)])
                     except Exception as e:
                         print "Can't restart process: %s" % e
-                        raise Exception("Can't restart: \"python sample-server.py --port %s\n" % (idx_port_start))
+                        raise Exception("Can't restart: \"python simple-server.py --port %s\n" % (idx_port_start))
                 idx += 1
             time.sleep(SLEEP_TIME)
         except (KeyboardInterrupt, Exception) as e:

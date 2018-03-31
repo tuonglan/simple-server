@@ -1,7 +1,7 @@
 version: '2'
 services:
     sample-server:
-        image: tuonglan/sample-server:1.0.0000
+        image: tuonglan/simple-server:1.0.0000
         ipc: host
         ports:
             - 8888:80
