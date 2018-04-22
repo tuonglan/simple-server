@@ -6,6 +6,6 @@ services:
         ports:
             - 8888:80
         volumes:
-            - /mnt/log:/var/log
+            - /mnt/log:/var/log/simple-server
         command: python server-daemon.py --update_nginx --port_range 8000:8010
         restart: always
